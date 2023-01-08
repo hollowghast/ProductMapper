@@ -7,15 +7,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Controller
-@RequestMapping(value = "/bye"/*, method = RequestMethod.GET*/)
+@RequestMapping(value = "/bye", method = RequestMethod.GET)
 public class HelloMVC {
 
-    @GetMapping()
+    @GetMapping
     public String hello_mvc(@RequestParam(value = "name", defaultValue = "World") String name, Model m){
         //m.addAttribute(new Hello(counter.incrementAndGet(), name, String.format(MESSAGE_TEMPLATE, name)));
         //m.addAttribute("id", counter.incrementAndGet());
         m.addAttribute("name", name);
-        return "hello";
+        return "bye";
     }
 
 }
