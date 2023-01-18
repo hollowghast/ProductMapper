@@ -3,10 +3,16 @@ package com.example.demo.mvc_test;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.MediaType;
+import org.springframework.web.servlet.function.RouterFunction;
+import org.springframework.web.servlet.function.ServerResponse;
 
 import java.util.List;
 
-@Configuration
+import static org.springframework.web.servlet.function.RequestPredicates.accept;
+import static org.springframework.web.servlet.function.RouterFunctions.route;
+
+@Configuration(proxyBeanMethods = false)
 public class BasicConfig {
 
     @Bean
@@ -21,5 +27,12 @@ public class BasicConfig {
                     List.of(bo1, bo2, bo3, bo4)
             );
         };
+    }
+    //@Bean
+    public RouterFunction<ServerResponse> routerFunction(BasicHandler handler){
+        return route()
+                .GET("/{id}", accept(MediaType.APPLICATION_JSON), handler::getBasic)
+                .DELETE("/{id}", accept(MediaType.APPLICATION_JSON), handler::deleteBasic)
+                .build();
     }
 }
