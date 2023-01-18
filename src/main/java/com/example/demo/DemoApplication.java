@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 public class DemoApplication {
 
-	/** TODO
+	/* TODO
 	 * events
 	 * listeners
 	 * bean handeling
 	 * aliases
 	 * beans & parent & property
-	 * @param args
+	 *
 	 */
 
 	public static void main(String[] args) {
