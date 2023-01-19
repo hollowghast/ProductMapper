@@ -1,15 +1,13 @@
 package com.example.demo.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/admin") //security needed (oauth?)
 public class AdminController {
 
     private final AdminService service;
@@ -20,7 +18,8 @@ public class AdminController {
     }
 
     @PostMapping("/init")
-    public void addShop(@RequestBody File f){
-        Shop s = service.analyzeFile(f);
+    public void addShop(@RequestBody MultipartFile f){
+        System.out.println(f.getName());
+        //Shop s = service.analyzeFile(f);
     }
 }

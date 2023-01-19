@@ -15,6 +15,7 @@ public class Address {
             strategy = GenerationType.SEQUENCE,
             generator = "seq_Address"
     )
+    @Column(name = "address_id")
     private Long id;
     private String country;
     private String district;
@@ -22,6 +23,18 @@ public class Address {
     private String city;
     private String street;
     private String address_details;
+
+    @OneToOne
+    @JoinColumn(name = "shop_id")
+    private Shop shop;
+
+    public Shop getShop() {
+        return shop;
+    }
+
+    public void setShop(Shop shop) {
+        this.shop = shop;
+    }
 
     public Address() {
     }

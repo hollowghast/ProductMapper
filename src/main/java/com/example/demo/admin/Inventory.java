@@ -4,23 +4,31 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
-@Entity
-@Table
-public class Inventory<T> {
-    @Id
-    @GeneratedValue(
-            strategy = GenerationType.TABLE
-    )
-    private String inventoryType;
-    private List<T> products;
+@MappedSuperclass
+public abstract class Inventory {
+
+    //private String inventoryType;
+    @OneToMany(targetEntity = BasicProduct.class)
+    private List<BasicProduct> products;
     private LocalDate created;
     private LocalDate last_change;
+
+    @OneToOne
+    @JoinColumn(name = "shop_id")
+    private Shop shop;
+
+    public Shop getShop() {
+        return shop;
+    }
+
+    public void setShop(Shop shop) {
+        this.shop = shop;
+    }
 
     public Inventory() {
     }
 
-    public Inventory(String inventoryType, List<T> products, LocalDate created, LocalDate last_change) {
-        this.inventoryType = inventoryType;
+    public Inventory(List<BasicProduct> products, LocalDate created, LocalDate last_change) {
         this.products = products;
         this.created = created;
         this.last_change = last_change;
