@@ -1,12 +1,10 @@
-package com.example.demo;
+package com.productmapper;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
-public class DemoApplication {
+public class ProductMapperApplication {
 
 	/* TODO
 	 * events
@@ -18,7 +16,7 @@ public class DemoApplication {
 	 */
 
 	public static void main(String[] args) {
-		SpringApplication app = new SpringApplication(DemoApplication.class);
+		SpringApplication app = new SpringApplication(ProductMapperApplication.class);
 		app.run(args);
 	}
 

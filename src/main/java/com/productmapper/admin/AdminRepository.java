@@ -1,4 +1,4 @@
-package com.example.demo.admin;
+package com.productmapper.admin;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

@@ -1,0 +1,10 @@
+Anforderungen an Betriebsleiter
+
+Phase 1
+	Einleitung
+	Formular des Bestandssortiments
+	Rabattliste
+
+Phase 2
+	Regelmäßige Übermittlung der Rabattlisten (an Mailserver?)
+	
