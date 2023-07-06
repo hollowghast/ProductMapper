@@ -1,5 +1,6 @@
 package com.productmapper.admin;
 
+import com.productmapper.admin.service.impl.DefaultCsvConverterService;
 import com.productmapper.entities.Store;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,13 +12,13 @@ import java.io.IOException;
 @RequestMapping(value = "/admin") //security needed (oauth?)
 public class AdminController {
 
-    private final CsvConverterService converter;
+    private final DefaultCsvConverterService converter;
 
     @Autowired
     private AdminService adminService;
 
     @Autowired
-    public AdminController(CsvConverterService converter) {
+    public AdminController(DefaultCsvConverterService converter) {
         this.converter = converter;
     }
 
