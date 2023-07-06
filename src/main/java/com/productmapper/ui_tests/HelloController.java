@@ -1,6 +1,5 @@
-package com.example.demo.ui_tests;
+package com.productmapper.ui_tests;
 
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.concurrent.atomic.AtomicLong;

@@ -1,0 +1,73 @@
+erd
+
+employee
+(
+    id SERIAL
+    surname VARCHAR
+    companyId SERIAL
+    FOREIGN KEY (companyId) REFERENCES company (id)
+)
+
+skillset
+(
+    employeeId SERIAL
+    skillId SERIAL
+    PRIMARY KEY (employeeId, skillId)
+    FOREIGN KEY (skillId) REFERENCES skill (id)
+    FOREIGN KEY (employeeId) REFERENCES employee (id)
+)
+
+skill
+(
+    id SERIAL
+    description VARCHAR
+)
+
+company
+(
+    id SERIAL
+    addressId SERIAL
+    description VARCHAR
+    FOREIGN KEY (addressID) REFERENCES address (id)
+)
+
+address
+(
+    id SERIAL
+    street VARCHAR
+)
+
+
+
+one to one
+address <-> company
+address:
+    @OneToOne(mappedBy = "company")
+company:
+    @OneToOne
+    @JoinColumn("companyId")
+----------------------------------------------------------------
+1:n always depends on the viewpoint of the relationship
+one to many (standard in this project)
+company <-> store
+company:
+    @OneToMany(mappedBy = "company")
+store:
+    @ManyToOne
+    @JoinColumn(name = "id")
+
+many to one
+company:
+    @ManyToOne
+    @JoinColumn(name = "id") //join column uses the name of the column in the db table of the bonded entity
+store:
+    @OneToMany(mappedBy = "store") // uses the name of the variable in the bonded class which relates to this class
+----------------------------------------------------------------
+many to many
+needs a join table
+    n:
+    @ManyToMany
+    @JoinTable("nm")
+    m:
+    @ManyToMany
+    @JoinTable("nm")
