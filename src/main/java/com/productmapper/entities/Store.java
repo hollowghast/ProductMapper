@@ -1,9 +1,18 @@
 package com.productmapper.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class Store {
     @Id
     @SequenceGenerator(
@@ -19,11 +28,11 @@ public class Store {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "company_id")
+    @JoinColumn(name = "company_id", nullable = false)
     private Company company;
 
     @OneToOne(cascade = CascadeType.ALL) //done
-    @JoinColumn(name = "address_id")
+    @JoinColumn(name = "address_id", nullable = false)
     private Address address;
 
 
@@ -33,17 +42,9 @@ public class Store {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "store") //done
     private List<OpeningHours> opening_hours;
 
-    public Long getId() {
-        return id;
+
+    public Store(Company company, Address address) {
+        this.company = company;
+        this.address = address;
     }
-
-    public Company getCompany() {
-        return company;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-
 }

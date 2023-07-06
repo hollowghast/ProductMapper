@@ -8,17 +8,26 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
 @RestController
-@RequestMapping(value = "/admin", consumes = "multipart/form-data") //security needed (oauth?)
+@RequestMapping(value = "/admin") //security needed (oauth?)
 public class AdminController {
 
     private final CsvConverterService converter;
+
+    @Autowired
+    private AdminService adminService;
 
     @Autowired
     public AdminController(CsvConverterService converter) {
         this.converter = converter;
     }
 
-    @PostMapping("/init")
+    @GetMapping("/test")
+    public String insertTestData(){
+        adminService.doStuff();
+        return "";
+    }
+
+    @PostMapping(value = "/init", consumes = "multipart/form-data")
     public String addShop(@RequestParam("file") MultipartFile f){
         try {
             Store s = converter.analyzeFile(f);

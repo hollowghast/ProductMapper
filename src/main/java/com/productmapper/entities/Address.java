@@ -1,8 +1,17 @@
 package com.productmapper.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class Address {
     @Id
     @SequenceGenerator(
@@ -18,33 +27,20 @@ public class Address {
     private Long id;
     private String country;
     private String district;
+    @Column(nullable = false)
     private String zipcode;
+    @Column(nullable = false)
     private String city;
+    @Column(nullable = false)
     private String street;
     private String details;
 
     @OneToOne(mappedBy = "address") //done
     private Store store;
 
-    public Store getShop() {
-        return store;
-    }
-
-    public void setShop(Store store) {
-        this.store = store;
-    }
-
-    public Address() {
-    }
-
-    public Address(Long id, String country, String district,
-                   String zipcode, String city, String street, String details) {
-        this.id = id;
-        this.country = country;
-        this.district = district;
+    public Address(String zipcode, String city, String street) {
         this.zipcode = zipcode;
         this.city = city;
         this.street = street;
-        this.details = details;
     }
 }
