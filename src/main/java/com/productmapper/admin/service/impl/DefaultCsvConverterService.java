@@ -33,6 +33,26 @@ public class DefaultCsvConverterService implements CsvConverterService {
         }
     }
 
+    @Override
+    public Store readStoreFromCsvFile(MultipartFile file) {
+        try (Reader reader = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
+            CsvToBean<Store> csvReader = new CsvToBeanBuilder<Store>(reader)
+                    .withType(Store.class)
+                    .withSeparator(CSV_TOKEN_DELIMITER)
+                    .withIgnoreLeadingWhiteSpace(true)
+                    .withIgnoreEmptyLine(true)
+                    .build();
+            return csvReader.parse()
+                    .stream()
+                    .findFirst()
+                    .orElse(null);
+        } catch (IOException e) {
+            System.err.println("parsing csv file failed");
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public Store analyzeFile(MultipartFile f) throws UnsupportedOperationException, IOException {
         //file -> shop
         if (f.getResource().exists()) {
