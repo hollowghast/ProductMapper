@@ -1,16 +1,16 @@
 package com.productmapper.entities;
 
+import com.productmapper.constants.Weekday;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.OffsetTime;
 
 @Entity
 @Data
 @NoArgsConstructor
-public class Opening_Hours {
+public class OpeningHours {
     @Id
     @SequenceGenerator(
             name = "seq_Opening_Hours",
@@ -40,7 +40,7 @@ public class Opening_Hours {
      * @param start_time
      * @param end_time
      */
-    public Opening_Hours(Store store, OffsetTime start_time, OffsetTime end_time) {
+    public OpeningHours(Store store, OffsetTime start_time, OffsetTime end_time) {
         this.store = store;
         this.start_time = start_time;
         this.end_time = end_time;
@@ -53,7 +53,7 @@ public class Opening_Hours {
      * @param start_time
      * @param end_time
      */
-    public Opening_Hours(Weekday weekday, Store store, OffsetTime start_time, OffsetTime end_time) {
+    public OpeningHours(Weekday weekday, Store store, OffsetTime start_time, OffsetTime end_time) {
         this.weekday = weekday;
         this.store = store;
         this.start_time = start_time;
@@ -67,7 +67,7 @@ public class Opening_Hours {
      * @param end_time
      * @param date
      */
-    public Opening_Hours(Store store, OffsetTime start_time, OffsetTime end_time, LocalDate date) {
+    public OpeningHours(Store store, OffsetTime start_time, OffsetTime end_time, LocalDate date) {
         this.store = store;
         this.start_time = start_time;
         this.end_time = end_time;

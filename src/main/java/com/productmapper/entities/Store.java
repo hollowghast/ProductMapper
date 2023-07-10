@@ -34,11 +34,11 @@ public class Store {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "store") //done
     @JsonIgnore
-    private List<Local_Product> localProducts;
+    private List<LocalProduct> localProducts;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "store") //done
     @JsonIgnore
-    private List<Opening_Hours> opening_hours;
+    private List<OpeningHours> opening_hours;
 
 
     public Store(Company company, Address address) {

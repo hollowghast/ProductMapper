@@ -4,14 +4,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.util.List;
 
 @Entity
 @Data
-public class Local_Product {
+public class LocalProduct {
     @Id
     @SequenceGenerator(
             name = "seq_Local_Product",
@@ -27,7 +25,7 @@ public class Local_Product {
     //private String inventoryType;
     @ManyToOne
     @JoinColumn(name = "base_product_id", nullable = false)
-    private Base_Product base_product;
+    private BaseProduct base_product;
     @Column(nullable = false,
     columnDefinition = "TIMESTAMP WITH TIME ZONE")
     private final OffsetDateTime created;
@@ -43,11 +41,11 @@ public class Local_Product {
     @JsonIgnore
     private List<Price> prices;
 
-    public Local_Product() {
+    public LocalProduct() {
         this.created = OffsetDateTime.now();
     }
 
-    public Local_Product(Base_Product base_product, Store store) {
+    public LocalProduct(BaseProduct base_product, Store store) {
         this.base_product = base_product;
         this.store = store;
         this.created = OffsetDateTime.now();//should be done in the DB with a trigger

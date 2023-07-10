@@ -27,7 +27,7 @@ public class Brand {
 
     @OneToMany(mappedBy = "brand")
     @JsonIgnore
-    private List<Base_Product> base_products;
+    private List<BaseProduct> base_products;
 
     public Brand(String name) {
         this.name = name;

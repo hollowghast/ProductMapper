@@ -1,5 +1,6 @@
 package com.productmapper.admin;
 
+import com.productmapper.constants.PriceType;
 import com.productmapper.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,18 +46,18 @@ public class AdminService {
         );
         for(Store s : ss) entityManager.persist(s);
 
-        List<Opening_Hours> ohs = Arrays.asList(
-                new Opening_Hours(ss.get(0),
+        List<OpeningHours> ohs = Arrays.asList(
+                new OpeningHours(ss.get(0),
                         OffsetTime.of(LocalTime.of(6, 30), ZoneOffset.ofHours(2)),
                         OffsetTime.of(LocalTime.of(18, 30), ZoneOffset.ofHours(2))),
-                new Opening_Hours(ss.get(1),
+                new OpeningHours(ss.get(1),
                         OffsetTime.of(LocalTime.of(6, 0), ZoneOffset.ofHours(2)),
                         OffsetTime.of(LocalTime.of(17, 30), ZoneOffset.ofHours(2))),
-                new Opening_Hours(ss.get(2),
+                new OpeningHours(ss.get(2),
                         OffsetTime.of(LocalTime.of(7, 30), ZoneOffset.ofHours(2)),
                         OffsetTime.of(LocalTime.of(21, 30), ZoneOffset.ofHours(2)))
         );
-        for(Opening_Hours oh : ohs) entityManager.persist(oh);
+        for(OpeningHours oh : ohs) entityManager.persist(oh);
 
         List<Brand> bs = Arrays.asList(
                 new Brand("Pepsi Co"),
@@ -65,21 +66,21 @@ public class AdminService {
         );
         for(Brand b : bs) entityManager.persist(b);
 
-        List<Base_Product> bps = Arrays.asList(
-                new Base_Product("Pepsi", bs.get(0)),
-                new Base_Product("Lipton", bs.get(1)),
-                new Base_Product("Pringles", bs.get(2))
+        List<BaseProduct> bps = Arrays.asList(
+                new BaseProduct("Pepsi", bs.get(0)),
+                new BaseProduct("Lipton", bs.get(1)),
+                new BaseProduct("Pringles", bs.get(2))
         );
-        for(Base_Product b : bps) entityManager.persist(b);
+        for(BaseProduct b : bps) entityManager.persist(b);
         
-        List<Local_Product> lps = Arrays.asList(
-                new Local_Product(bps.get(0), ss.get(0)),
-                new Local_Product(bps.get(2), ss.get(0)),
-                new Local_Product(bps.get(0), ss.get(1)),
-                new Local_Product(bps.get(1), ss.get(1)),
-                new Local_Product(bps.get(2), ss.get(2))
+        List<LocalProduct> lps = Arrays.asList(
+                new LocalProduct(bps.get(0), ss.get(0)),
+                new LocalProduct(bps.get(2), ss.get(0)),
+                new LocalProduct(bps.get(0), ss.get(1)),
+                new LocalProduct(bps.get(1), ss.get(1)),
+                new LocalProduct(bps.get(2), ss.get(2))
         );
-        for(Local_Product l : lps) entityManager.persist(l);
+        for(LocalProduct l : lps) entityManager.persist(l);
 
         /*
         assuming that all store open at 8am, 08/20/2023 (same TZ)
@@ -87,19 +88,19 @@ public class AdminService {
         List<Price> ps = Arrays.asList(
                 new Price(lps.get(0), 0.98f,
                         OffsetDateTime.of(LocalDateTime.of(2023, 8, 20, 8, 0), ZoneOffset.ofHours(2)),
-                        Price_Type.BASE),
+                        PriceType.BASE),
                 new Price(lps.get(1), 2.99f,
                         OffsetDateTime.of(LocalDateTime.of(2023, 8, 20, 8, 0), ZoneOffset.ofHours(2)),
-                        Price_Type.BASE),
+                        PriceType.BASE),
                 new Price(lps.get(2), 1.12f,
                         OffsetDateTime.of(LocalDateTime.of(2023, 8, 20, 8, 0), ZoneOffset.ofHours(2)),
-                        Price_Type.BASE),
+                        PriceType.BASE),
                 new Price(lps.get(3), 1.49f,
                         OffsetDateTime.of(LocalDateTime.of(2023, 8, 20, 8, 0), ZoneOffset.ofHours(2)),
-                        Price_Type.BASE),
+                        PriceType.BASE),
                 new Price(lps.get(4), 3.84f,
                         OffsetDateTime.of(LocalDateTime.of(2023, 8, 20, 8, 0), ZoneOffset.ofHours(2)),
-                        Price_Type.BASE)
+                        PriceType.BASE)
         );
         for(Price p : ps) entityManager.persist(p);
         entityManager.getTransaction().commit();
