@@ -1,9 +1,6 @@
 package com.productmapper.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -11,10 +8,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Date;
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
+@Data
 public class OpeningHours {
     @Id
     @SequenceGenerator(

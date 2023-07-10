@@ -1,16 +1,57 @@
-package com.productmapper.admin;
+package com.productmapper.admin.service.impl;
 
+import com.opencsv.bean.CsvToBean;
+import com.opencsv.bean.CsvToBeanBuilder;
+import com.productmapper.admin.service.CsvConverterService;
+import com.productmapper.entities.Local_Product;
 import com.productmapper.entities.Store;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 import java.util.stream.Stream;
 
 @Service
-public class CsvConverterService {
-    private final static String CSV_TOKEN_DELIMITER = ",";
+public class DefaultCsvConverterService implements CsvConverterService {
+    private final static char CSV_TOKEN_DELIMITER = ',';
+
+    @Override
+    public List<Local_Product> readProductsFromCsvFile(MultipartFile file) {
+        try (Reader reader = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
+            CsvToBean<Local_Product> csvReader = new CsvToBeanBuilder<Local_Product>(reader)
+                    .withType(Local_Product.class)
+                    .withSeparator(CSV_TOKEN_DELIMITER)
+                    .withIgnoreLeadingWhiteSpace(true)
+                    .withIgnoreEmptyLine(true)
+                    .build();
+            return csvReader.parse();
+        } catch (IOException e) {
+            System.err.println("parsing csv file failed");
+            e.printStackTrace();
+            return Collections.emptyList();
+        }
+    }
+
+    @Override
+    public Store readStoreFromCsvFile(MultipartFile file) {
+        try (Reader reader = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
+            CsvToBean<Store> csvReader = new CsvToBeanBuilder<Store>(reader)
+                    .withType(Store.class)
+                    .withSeparator(CSV_TOKEN_DELIMITER)
+                    .withIgnoreLeadingWhiteSpace(true)
+                    .withIgnoreEmptyLine(true)
+                    .build();
+            return csvReader.parse()
+                    .stream()
+                    .findFirst()
+                    .orElse(null);
+        } catch (IOException e) {
+            System.err.println("parsing csv file failed");
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     public Store analyzeFile(MultipartFile f) throws UnsupportedOperationException, IOException {
         //file -> shop
@@ -54,7 +95,7 @@ public class CsvConverterService {
         //s.limit(2).
 
         for (int i = 0; fin.hasNextLine(); i++) {
-            tokens = fin.nextLine().trim().split(CSV_TOKEN_DELIMITER);
+            tokens = fin.nextLine().trim().split("" + CSV_TOKEN_DELIMITER);
             if (tokens.length > 0) {
                 if (mainHeader.isEmpty()) {
                     /*mainHeader.putAll(
