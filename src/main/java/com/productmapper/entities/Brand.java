@@ -1,5 +1,6 @@
 package com.productmapper.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -22,8 +23,10 @@ public class Brand {
     private Long id;
     @Column(name = "brand_name", nullable = false)
     private String name;
+
     @OneToMany(mappedBy = "brand")
-    private List<Base_Product> base_products;
+    @JsonIgnore
+    private List<BaseProduct> base_products;
 
     public Brand(String name) {
         this.name = name;

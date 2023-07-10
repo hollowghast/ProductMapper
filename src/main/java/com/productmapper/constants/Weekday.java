@@ -1,4 +1,4 @@
-package com.productmapper.entities;
+package com.productmapper.constants;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -1,12 +1,12 @@
 package com.productmapper.entities;
 
+import com.productmapper.constants.Weekday;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.Date;
+import java.time.OffsetTime;
+
 @Entity
 @Data
 public class OpeningHours {
@@ -28,18 +28,19 @@ public class OpeningHours {
     @JoinColumn(name = "store_id", nullable = false) //done
     private Store store;
     @Column(nullable = false)
-    private LocalTime start_time;
+    private OffsetTime start_time;
     @Column(nullable = false)
-    private LocalTime end_time;
+    private OffsetTime end_time;
     private LocalDate date;
 
     /**
      * Sets general opening hours which are valid for EVERY day
+     *
      * @param store
      * @param start_time
      * @param end_time
      */
-    public OpeningHours(Store store, LocalTime start_time, LocalTime end_time) {
+    public OpeningHours(Store store, OffsetTime start_time, OffsetTime end_time) {
         this.store = store;
         this.start_time = start_time;
         this.end_time = end_time;
@@ -47,12 +48,13 @@ public class OpeningHours {
 
     /**
      * Sets opening hours for specific weekdays
+     *
      * @param weekday
      * @param store
      * @param start_time
      * @param end_time
      */
-    public OpeningHours(Weekday weekday, Store store, LocalTime start_time, LocalTime end_time) {
+    public OpeningHours(Weekday weekday, Store store, OffsetTime start_time, OffsetTime end_time) {
         this.weekday = weekday;
         this.store = store;
         this.start_time = start_time;
@@ -61,12 +63,13 @@ public class OpeningHours {
 
     /**
      * Sets opening hours on this specific date
+     *
      * @param store
      * @param start_time
      * @param end_time
      * @param date
      */
-    public OpeningHours(Store store, LocalTime start_time, LocalTime end_time, LocalDate date) {
+    public OpeningHours(Store store, OffsetTime start_time, OffsetTime end_time, LocalDate date) {
         this.store = store;
         this.start_time = start_time;
         this.end_time = end_time;

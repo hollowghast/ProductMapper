@@ -1,5 +1,6 @@
 package com.productmapper.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -31,9 +32,11 @@ public class Store {
 
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "store") //done
-    private List<Local_Product> localProducts;
+    @JsonIgnore
+    private List<LocalProduct> localProducts;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "store") //done
+    @JsonIgnore
     private List<OpeningHours> opening_hours;
 
 

@@ -1,6 +1,6 @@
 package com.productmapper.admin.service;
 
-import com.productmapper.entities.Local_Product;
+import com.productmapper.entities.LocalProduct;
 import com.productmapper.entities.Store;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,7 +14,7 @@ public interface CsvConverterService {
      * @param file file
      * @return List of Local_Product
      */
-    List<Local_Product> readProductsFromCsvFile(MultipartFile file);
+    List<LocalProduct> readProductsFromCsvFile(MultipartFile file);
 
     /**
      * reads Store from CSV File

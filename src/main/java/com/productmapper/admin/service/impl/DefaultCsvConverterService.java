@@ -3,7 +3,7 @@ package com.productmapper.admin.service.impl;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import com.productmapper.admin.service.CsvConverterService;
-import com.productmapper.entities.Local_Product;
+import com.productmapper.entities.LocalProduct;
 import com.productmapper.entities.Store;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,10 +17,10 @@ public class DefaultCsvConverterService implements CsvConverterService {
     private final static char CSV_TOKEN_DELIMITER = ',';
 
     @Override
-    public List<Local_Product> readProductsFromCsvFile(MultipartFile file) {
+    public List<LocalProduct> readProductsFromCsvFile(MultipartFile file) {
         try (Reader reader = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
-            CsvToBean<Local_Product> csvReader = new CsvToBeanBuilder<Local_Product>(reader)
-                    .withType(Local_Product.class)
+            CsvToBean<LocalProduct> csvReader = new CsvToBeanBuilder<LocalProduct>(reader)
+                    .withType(LocalProduct.class)
                     .withSeparator(CSV_TOKEN_DELIMITER)
                     .withIgnoreLeadingWhiteSpace(true)
                     .withIgnoreEmptyLine(true)

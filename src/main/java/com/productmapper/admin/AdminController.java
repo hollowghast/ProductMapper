@@ -24,8 +24,13 @@ public class AdminController {
     }
 
     @GetMapping("/test")
+<<<<<<< HEAD
     public String insertTestData() {
         adminService.doStuff();
+=======
+    public String insertTestData(){
+        adminService.insertTestData();
+>>>>>>> dev_basics
         return "";
     }
 

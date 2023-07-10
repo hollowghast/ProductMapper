@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Data
-public class Base_Product {
+public class BaseProduct {
     @Id
     @SequenceGenerator(
             name = "seq_Base_Product",
@@ -30,7 +30,7 @@ public class Base_Product {
     @JoinColumn(name = "brand_id", nullable = false)
     private Brand brand;
 
-    public Base_Product(String name, Brand brand) {
+    public BaseProduct(String name, Brand brand) {
         this.name = name;
         this.brand = brand;
     }
