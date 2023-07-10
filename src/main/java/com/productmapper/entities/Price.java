@@ -1,19 +1,15 @@
 package com.productmapper.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 
 @Entity
-@AllArgsConstructor
+@Data
 @NoArgsConstructor
-@Getter
-@Setter
 public class Price {
     @Id
     @SequenceGenerator(
@@ -30,6 +26,7 @@ public class Price {
 
     @ManyToOne
     @JoinColumn(name = "local_product_id", nullable = false)
+    @JsonIgnore
     private Local_Product local_product;
     @Column(nullable = false)
     private Float price;

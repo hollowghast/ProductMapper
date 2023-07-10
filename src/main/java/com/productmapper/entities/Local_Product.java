@@ -1,9 +1,7 @@
 package com.productmapper.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -12,9 +10,7 @@ import java.time.OffsetDateTime;
 import java.util.List;
 
 @Entity
-@AllArgsConstructor
-@Getter
-@Setter
+@Data
 public class Local_Product {
     @Id
     @SequenceGenerator(
@@ -40,9 +36,11 @@ public class Local_Product {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "store_id", nullable = false) //done
+    @JsonIgnore
     private Store store;
 
     @OneToMany(mappedBy = "local_product")
+    @JsonIgnore
     private List<Price> prices;
 
     public Local_Product() {

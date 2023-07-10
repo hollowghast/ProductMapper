@@ -23,7 +23,7 @@ public class AdminController {
 
     @GetMapping("/test")
     public String insertTestData(){
-        adminService.doStuff();
+        adminService.insertTestData();
         return "";
     }
 

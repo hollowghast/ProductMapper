@@ -1,17 +1,13 @@
 package com.productmapper.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
-@AllArgsConstructor
+@Data
 @NoArgsConstructor
-@Getter
-@Setter
 public class Address {
     @Id
     @SequenceGenerator(
@@ -36,6 +32,7 @@ public class Address {
     private String details;
 
     @OneToOne(mappedBy = "address") //done
+    @JsonIgnore
     private Store store;
 
     public Address(String zipcode, String city, String street) {

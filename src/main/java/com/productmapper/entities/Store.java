@@ -1,18 +1,14 @@
 package com.productmapper.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@AllArgsConstructor
+@Data
 @NoArgsConstructor
-@Getter
-@Setter
 public class Store {
     @Id
     @SequenceGenerator(
@@ -37,10 +33,12 @@ public class Store {
 
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "store") //done
+    @JsonIgnore
     private List<Local_Product> localProducts;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "store") //done
-    private List<OpeningHours> opening_hours;
+    @JsonIgnore
+    private List<Opening_Hours> opening_hours;
 
 
     public Store(Company company, Address address) {
