@@ -30,38 +30,18 @@ public class AdminController {
     }
 
     @GetMapping("/test")
-<<<<<<< HEAD
-    public String insertTestData() {
-        adminService.doStuff();
-=======
     public String insertTestData(){
         adminService.insertTestData();
         return "";
     }
 
     @PostMapping(value = "/init", consumes = "multipart/form-data", params = {"file"})
-    public String addShop(@RequestParam("file") MultipartFile f){
-        try {
-            Store s = converter.analyzeFile(f);
-            if(s == null){
-                return "Error";
-            }
-            else return "shop?id=626756152"; //show shop
-        }catch (IOException ioe){
-    @PostMapping(value = "/init", consumes = "multipart/form-data")
     public String addShop(@RequestParam("file") MultipartFile f) {
-        //  try {
-        Store s = converter.readStoreFromCsvFile(f);
+        Object s = converter.readFromCSVFile(f);
         if (s == null) {
             return "Error";
         } else {
             return "shop?id=626756152"; //show shop
         }
-        /* }catch (IOException ioe){
-            ioe.printStackTrace(); //log
-        }catch(Exception e){
-            e.printStackTrace(); //log
-        }
-        return "somethingWentWrong";*/
     }
 }
