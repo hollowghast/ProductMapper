@@ -1,9 +1,8 @@
-package com.productmapper.admin.service.impl;
+package com.productmapper.admin.services.impl;
 
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
-import com.productmapper.admin.service.CsvConverterService;
-import com.productmapper.entities.LocalProduct;
+import com.productmapper.admin.services.CsvConverterService;
 import com.productmapper.entities.Store;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,12 +15,12 @@ import java.util.Collections;
 import java.util.List;
 
 @Service
-public class LocalProductCsvConverterService implements CsvConverterService<LocalProduct> {
+public class StoreCsvConverterService implements CsvConverterService<Store> {
     @Override
-    public List<LocalProduct> readFromCSVFile(MultipartFile file) {
+    public List<Store> readFromCSVFile(MultipartFile file) {
         try (Reader reader = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
-            CsvToBean<LocalProduct> csvReader = new CsvToBeanBuilder<LocalProduct>(reader)
-                    .withType(LocalProduct.class)
+            CsvToBean<Store> csvReader = new CsvToBeanBuilder<Store>(reader)
+                    .withType(Store.class)
                     .withSeparator(CSV_TOKEN_DELIMITER)
                     .withIgnoreLeadingWhiteSpace(true)
                     .withIgnoreEmptyLine(true)
