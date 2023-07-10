@@ -6,21 +6,15 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
-public interface CsvConverterService {
+public interface CsvConverterService<T> {
+
+    char CSV_TOKEN_DELIMITER = ',';
 
     /**
-     * reads Products from given CSV File
+     * reads Objects of generic type from given CSV File
      *
      * @param file file
-     * @return List of Local_Product
+     * @return List of generic type
      */
-    List<LocalProduct> readProductsFromCsvFile(MultipartFile file);
-
-    /**
-     * reads Store from CSV File
-     *
-     * @param file file
-     * @return Store
-     */
-    Store readStoreFromCsvFile(MultipartFile file);
+    List<T> readFromCSVFile(MultipartFile file);
 }

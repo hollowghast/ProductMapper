@@ -12,15 +12,13 @@ import java.io.*;
 import java.util.*;
 import java.util.stream.Stream;
 
-@Service
-public class DefaultCsvConverterService implements CsvConverterService {
-    private final static char CSV_TOKEN_DELIMITER = ',';
+public class DefaultCsvConverterService<T> implements CsvConverterService<T> {
 
     @Override
-    public List<LocalProduct> readProductsFromCsvFile(MultipartFile file) {
+    public List<T> readFromCSVFile(MultipartFile file/*, Class<T> type*/) {
         try (Reader reader = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
-            CsvToBean<LocalProduct> csvReader = new CsvToBeanBuilder<LocalProduct>(reader)
-                    .withType(LocalProduct.class)
+            CsvToBean<T> csvReader = new CsvToBeanBuilder<T>(reader)
+                    //.withType(type)
                     .withSeparator(CSV_TOKEN_DELIMITER)
                     .withIgnoreLeadingWhiteSpace(true)
                     .withIgnoreEmptyLine(true)
@@ -33,11 +31,12 @@ public class DefaultCsvConverterService implements CsvConverterService {
         }
     }
 
-    @Override
-    public Store readStoreFromCsvFile(MultipartFile file) {
+    /*@Override
+    public T readObjectFromCSVFile(MultipartFile file, Class<T> type) {
         try (Reader reader = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
-            CsvToBean<Store> csvReader = new CsvToBeanBuilder<Store>(reader)
-                    .withType(Store.class)
+            CsvToBean<T> csvReader = new CsvToBeanBuilder<T>(reader)
+                    .withType(type)
+                    .withType(type)
                     .withSeparator(CSV_TOKEN_DELIMITER)
                     .withIgnoreLeadingWhiteSpace(true)
                     .withIgnoreEmptyLine(true)
@@ -51,67 +50,5 @@ public class DefaultCsvConverterService implements CsvConverterService {
             e.printStackTrace();
             return null;
         }
-    }
-
-    public Store analyzeFile(MultipartFile f) throws UnsupportedOperationException, IOException {
-        //file -> shop
-        if (f.getResource().exists()) {
-            if (f.getResource().isReadable()) {
-                //switch file types
-                String fname = f.getResource().getFilename();
-                String ending = fname.substring(fname.lastIndexOf((int) '.') + 1 /* dont need the dot */);
-                System.out.println("Preparing to analyze " + fname);
-
-                if (ending.toLowerCase().equals("csv")) {
-                    //throw new UnsupportedOperationException("not done yet");
-                    convert(f);
-                }
-            }
-        }
-        return null;
-    }
-
-    private Store convert(MultipartFile f) throws IOException {
-        Scanner fin = new Scanner(f.getInputStream());
-        String[] tokens;
-
-        /*
-        a) split [main headers] from [inventory and coupons]
-        b) extract main headers
-        c) split inventory from coupons
-        d) extract inventory headers
-        e) extract inventory data
-        f) extract coupon headers
-        g) extract coupon data
-         */
-
-        //a)
-        Map<String, String> mainHeader = new HashMap<>();
-
-        Stream<String> s = fin.findAll(".+") //forms stream of all non-empty lines from the file
-                .map(m -> m.group().trim())
-                .filter(l -> l.length() > 0);
-
-        //s.limit(2).
-
-        for (int i = 0; fin.hasNextLine(); i++) {
-            tokens = fin.nextLine().trim().split("" + CSV_TOKEN_DELIMITER);
-            if (tokens.length > 0) {
-                if (mainHeader.isEmpty()) {
-                    /*mainHeader.putAll(
-                            Arrays.asList(tokens)
-                                    .stream()
-                                    .collect(Collectors.toMap(t -> t, ""))
-                    );*/
-                }
-            } else {
-                i--;
-                continue;
-            }
-
-        }
-
-        fin.close();
-        return null;
-    }
+    }*/
 }
