@@ -6,7 +6,6 @@ import javax.persistence.*;
 
 @Entity
 @Data
-@NoArgsConstructor
 public class BaseProduct {
     @Id
     @SequenceGenerator(

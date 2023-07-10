@@ -7,7 +7,6 @@ import javax.persistence.*;
 
 @Entity
 @Data
-@NoArgsConstructor
 public class Address {
     @Id
     @SequenceGenerator(

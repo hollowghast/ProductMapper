@@ -9,7 +9,6 @@ import java.time.OffsetTime;
 
 @Entity
 @Data
-@NoArgsConstructor
 public class OpeningHours {
     @Id
     @SequenceGenerator(
@@ -36,6 +35,7 @@ public class OpeningHours {
 
     /**
      * Sets general opening hours which are valid for EVERY day
+     *
      * @param store
      * @param start_time
      * @param end_time
@@ -48,6 +48,7 @@ public class OpeningHours {
 
     /**
      * Sets opening hours for specific weekdays
+     *
      * @param weekday
      * @param store
      * @param start_time
@@ -62,6 +63,7 @@ public class OpeningHours {
 
     /**
      * Sets opening hours on this specific date
+     *
      * @param store
      * @param start_time
      * @param end_time

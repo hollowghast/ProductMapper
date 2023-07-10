@@ -8,7 +8,6 @@ import java.util.List;
 
 @Entity
 @Data
-@NoArgsConstructor
 public class Brand {
     @Id
     @SequenceGenerator(

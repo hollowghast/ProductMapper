@@ -8,7 +8,6 @@ import java.util.List;
 
 @Entity
 @Data
-@NoArgsConstructor
 public class Store {
     @Id
     @SequenceGenerator(

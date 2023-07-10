@@ -10,6 +10,7 @@ import java.util.List;
 @Entity
 @Data
 public class LocalProduct {
+
     @Id
     @SequenceGenerator(
             name = "seq_Local_Product",
@@ -27,7 +28,7 @@ public class LocalProduct {
     @JoinColumn(name = "base_product_id", nullable = false)
     private BaseProduct base_product;
     @Column(nullable = false,
-    columnDefinition = "TIMESTAMP WITH TIME ZONE")
+            columnDefinition = "TIMESTAMP WITH TIME ZONE")
     private final OffsetDateTime created;
     @Column(columnDefinition = "TIMESTAMP WITH TIME ZONE")
     private OffsetDateTime last_change;
