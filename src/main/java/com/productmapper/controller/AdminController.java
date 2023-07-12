@@ -2,7 +2,7 @@ package com.productmapper.controller;
 
 import com.productmapper.admin.AdminService;
 import com.productmapper.admin.services.CsvConverterService;
-import com.productmapper.admin.services.impl.DefaultCsvConverterService;
+import com.productmapper.admin.services.implementations.DefaultCsvConverterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;

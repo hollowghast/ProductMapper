@@ -28,4 +28,6 @@ public class AddressService{
     public List<Address> getAddressesByZipcode(String zipcode){
         return repo.findByZipcode(zipcode);
     }
+
+    public List<Address> getAllAddresses(){ return repo.findAll(); }
 }

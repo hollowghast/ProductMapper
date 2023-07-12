@@ -1,4 +1,4 @@
-package com.productmapper.admin.services.impl;
+package com.productmapper.admin.services.implementations;
 
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;

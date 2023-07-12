@@ -9,6 +9,7 @@ import java.time.OffsetDateTime;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class Price {
     @Id
     @SequenceGenerator(
