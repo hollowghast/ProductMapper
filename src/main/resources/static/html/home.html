@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!-- including Bootstrap lib -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+    <!-- including leaflet lib -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+    <script type="text/javascript" src="/js/home.js"></script>
+</head>
+
+<body>
+
+    <div class="nav nav-tabs mb-10">
+        <button class="nav-link active" id="nav-greeting-tab" type="button" role="tab">
+            Get your greeting <a href="/hello">here</a>
+        </button>
+        <a href="/html/test.html">
+            <button class="nav-link" type="button" role="tab">
+                test
+            </button>
+        </a>
+        <button class="nav-link" type="button" role="tab" onclick="showAddresses()">
+            Show all addresses in db
+        </button>
+        <button class="nav-link" type="button" role="tab" onclick="showStores()">
+            Show all stores in db
+        </button>
+        <button class="nav-link" type="button" role="tab" onclick="showCompanies()">
+            Show all companies in db
+        </button>
+        <button class="nav-link" type="button" role="tab" onclick="showBaseProducts()">
+            Show all products in db
+        </button>
+        <button class="nav-link" type="button" role="tab" onclick="showBrands()">
+            Show all brands in db
+        </button>
+    </div>
+
+    <div id="map" style="height: 200px; width: 200px;"></div>
+    <div id="viewAllAddresses"></div>
+    <div id="viewAllStores"></div>
+    <div id="viewAllCompanies"></div>
+    <div id="viewAllBaseProducts"></div>
+    <div id="viewAllBrands"></div>
+
+</body>
+
+</html>

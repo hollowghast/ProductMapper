@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomepageController {
     @GetMapping
     public String getHomepage() {
-        return "forward:/html/index.html";
+        return "forward:/html/home.html";
     }
+
+    /*@GetMapping("/error")
+    public String handlePageNotFound(){
+        return "forward:/html/error/FileNotFound.html";
+    }*/
 }

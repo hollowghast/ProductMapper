@@ -3,8 +3,6 @@ package com.productmapper.services;
 import com.productmapper.entities.Address;
 import com.productmapper.repositories.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,7 +10,7 @@ import java.util.List;
 @Service
 public class AddressService{
     @Autowired
-    private AddressRepository repo;
+    AddressRepository repo;
 
     public Address saveAddress(Address address){
         return repo.save(address);
