@@ -15,4 +15,8 @@ public class StoreService {
     public List<Store> getAll() {
         return repo.findAll();
     }
+
+    public Store getStore(Long id) {
+        return repo.findById(id).orElse(null);
+    }
 }
