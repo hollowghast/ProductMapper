@@ -1,7 +1,5 @@
 package com.productmapper.admin.service;
 
-import com.productmapper.entities.LocalProduct;
-import com.productmapper.entities.Store;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
