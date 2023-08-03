@@ -1,15 +1,18 @@
 package com.productmapper.controller;
 
 import com.productmapper.admin.AdminService;
-import com.productmapper.admin.services.CsvConverterService;
-import com.productmapper.admin.services.impl.DefaultCsvConverterService;
+import com.productmapper.admin.service.CsvConverterService;
+import com.productmapper.admin.service.impl.StoreCsvConverterService;
+import com.productmapper.entities.Store;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 /**
  * mapping /admin
- *
+ * <p>
  * get /test to insert test data into the database
  * post /init with a "file" attached to insert data into the database
  */
@@ -17,25 +20,26 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping(value = "/admin") //security needed (oauth?)
 public class AdminController {
 
-    private final CsvConverterService converter;
+    private final CsvConverterService<Store> converter;
 
     @Autowired
     private AdminService adminService;
 
     @Autowired
-    public AdminController(DefaultCsvConverterService converter) {
+    public AdminController(StoreCsvConverterService converter) {
         this.converter = converter;
     }
 
     @GetMapping("/test")
-    public String insertTestData(){
+    public String insertTestData() {
         adminService.insertTestData();
         return "";
     }
 
     @PostMapping(value = "/init", consumes = "multipart/form-data", params = {"file"})
     public String addShop(@RequestParam("file") MultipartFile f) {
-        Object s = converter.readFromCSVFile(f);
+        //  try {
+        List<Store> s = converter.readFromCSVFile(f);
         if (s == null) {
             return "Error";
         } else {

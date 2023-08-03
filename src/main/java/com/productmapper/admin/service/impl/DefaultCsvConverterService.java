@@ -1,8 +1,8 @@
-package com.productmapper.admin.services.impl;
+package com.productmapper.admin.service.impl;
 
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
-import com.productmapper.admin.services.CsvConverterService;
+import com.productmapper.admin.service.CsvConverterService;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
