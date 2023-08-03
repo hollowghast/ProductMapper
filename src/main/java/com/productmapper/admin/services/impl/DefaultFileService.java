@@ -1,6 +1,6 @@
-package com.productmapper.admin.service.impl;
+package com.productmapper.admin.services.impl;
 
-import com.productmapper.admin.service.FileService;
+import com.productmapper.admin.services.FileService;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 

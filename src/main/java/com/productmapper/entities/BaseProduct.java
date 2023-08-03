@@ -7,6 +7,7 @@ import java.time.OffsetDateTime;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class BaseProduct {
     @Id
     @SequenceGenerator(

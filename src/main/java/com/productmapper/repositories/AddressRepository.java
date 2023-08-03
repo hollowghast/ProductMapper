@@ -16,4 +16,11 @@ public interface AddressRepository extends JpaRepository<Address, Long>
 
     //@Query(value = "SELECT * FROM address WHERE city = :city", nativeQuery = true)
     List<Address> findByCity(@Param("city") String city);
+
+    default Address saveIfNotExists(Address address){
+        if(existsById(address.getId())){
+            return address;
+        }
+        return save(address);
+    }
 }

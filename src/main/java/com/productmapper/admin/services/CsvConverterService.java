@@ -1,4 +1,4 @@
-package com.productmapper.admin.service;
+package com.productmapper.admin.services;
 
 import org.springframework.web.multipart.MultipartFile;
 

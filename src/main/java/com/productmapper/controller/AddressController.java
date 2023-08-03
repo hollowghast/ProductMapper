@@ -21,6 +21,11 @@ public class AddressController {
     @Autowired
     private AddressService service;
 
+    @GetMapping("/all")
+    public List<Address> getAllAddresses() {
+        return service.getAllAddresses();
+    }
+
     @GetMapping(params = {"city"})
     public List<Address> getAddressesByCity(@RequestParam(name = "city") String city) {
         System.out.println("\n\n\n\n The city i chose: " + city);

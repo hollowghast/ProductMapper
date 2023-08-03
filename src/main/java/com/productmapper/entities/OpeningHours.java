@@ -9,6 +9,7 @@ import java.time.OffsetTime;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class OpeningHours {
     @Id
     @SequenceGenerator(
