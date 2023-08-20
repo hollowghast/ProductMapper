@@ -1,0 +1,7 @@
+body .content {
+    max-width: innerWidth;
+    width: innerWidth;
+    align-content: center;
+    align-items: center;
+    margin: auto;
+}
