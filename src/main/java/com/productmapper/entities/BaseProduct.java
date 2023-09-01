@@ -4,6 +4,7 @@ import com.productmapper.constants.MassUnits;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.OffsetDateTime;
 
 @Entity
 @Data
@@ -27,6 +28,10 @@ public class BaseProduct {
     private Float price_unit;
     private Double net_mass;
     private String currency; //->enum
+
+    @Column(nullable = false, name = "last_updated")
+    private OffsetDateTime lastUpdated;
+
     private MassUnits mass_unit; //->enum
     @ManyToOne
     @JoinColumn(name = "brand_id", nullable = false)

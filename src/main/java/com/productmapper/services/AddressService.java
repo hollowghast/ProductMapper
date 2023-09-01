@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class AddressService{
     @Autowired
-    AddressRepository repo;
+    private AddressRepository repo;
 
     public Address saveAddress(Address address){
         return repo.save(address);
