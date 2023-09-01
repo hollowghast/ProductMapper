@@ -28,11 +28,11 @@ public class BaseProduct {
     private Float price_unit;
     private Double net_mass;
     private String currency; //->enum
-    private MassUnits mass_unit; //->enum
 
     @Column(nullable = false, name = "last_updated")
     private OffsetDateTime lastUpdated;
 
+    private MassUnits mass_unit; //->enum
     @ManyToOne
     @JoinColumn(name = "brand_id", nullable = false)
     private Brand brand;

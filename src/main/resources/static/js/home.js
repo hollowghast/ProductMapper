@@ -270,11 +270,13 @@ window.addEventListener('load',
         this.document.getElementsByTagName("body")[0].style.width = innerWidth;
         //askAddress();
         let c = "";
+
         for (let i = 0; i < 50; i++) {
             c += "testdata";
             if (i % 10 == 0) c += '\n';
         }
         this.document.getElementById('testdata').innerHTML = c;
+
 
         this.document.getElementById("databox").style.top = document.getElementsByTagName('header')[0].getBoundingClientRect().height;
     }
