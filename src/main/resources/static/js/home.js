@@ -1,8 +1,9 @@
+// remember Ctrl+F5 to refresh the page and empty the cache
+
 let mapCenter = [47.07, 15.44];
 let mapDefaultZoom = 13;
 let map = undefined;
 let mapActiveMarker = undefined;
-
 
 function injectBootstrap() {
     Array.from(document.getElementsByTagName('ul'))
@@ -12,11 +13,16 @@ function injectBootstrap() {
 }
 
 function loadMap() {
-    map = L.map('map').setView(mapCenter, mapDefaultZoom);
+    map = L.map('map',
+        {
+            //options
+            scrollWheelZoom:false
+        }
+    ).setView(mapCenter, mapDefaultZoom);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-        maxZoom: 18,
+        maxZoom: 18
     }).addTo(map);
 }
 
@@ -200,8 +206,10 @@ function hideBrands() {
 
 
 async function fetchGpsCoordinates(address) {
-    let coords = null;
-    await fetch('https://nominatim.openstreetmap.org/search/' + convertAddressForURI(address) + '?format=json')
+    let coords = [];
+    let url = 'https://nominatim.openstreetmap.org/search?q=' + convertAddressForURI(address) + '&format=jsonv2';
+
+    await fetch(url)
         .then(response => response.json())
         .then(data => {
             if (data.length > 0) {
@@ -209,6 +217,9 @@ async function fetchGpsCoordinates(address) {
                 let lon = parseFloat(data[0].lon);
                 coords = [lat, lon];
             }
+        })
+        .catch(error => {
+            console.error('Error:', error);
         });
     return coords;
 }
@@ -228,29 +239,17 @@ function convertAddressForURI(address) {
 function setMarker(address) {
     if (address == null) address = 'Griesplatz 1, 8020 Graz';
 
-    fetch('https://nominatim.openstreetmap.org/search/' +
-            /*encodeURIComponent(address) + */
-            convertAddressForURI(address) +
-            '?format=json')
-        .then(response => response.json())
-        .then(data => {
-            if (data.length > 0) {
-                let lat = parseFloat(data[0].lat);
-                let lon = parseFloat(data[0].lon);
+    let coords = fetchGpsCoordinates(address);
 
-                // Create a marker at the coordinates
-                if (mapActiveMarker != undefined) map.removeLayer(mapActiveMarker);
-                mapActiveMarker = L.marker([lat, lon]);
-                mapActiveMarker.addTo(map);
-                // Set the map view to the marker location
-                map.setView([lat, lon], 13);
-            } else {
-                console.log('No results found for the address');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+    // Create a marker at the coordinates
+    if (mapActiveMarker != undefined && coords.length > 0) {
+        map.removeLayer(mapActiveMarker);
+        mapActiveMarker = L.marker(coords[0], coords[1]);
+        mapActiveMarker.addTo(map);
+        // Set the map view to the marker location
+        map.setView(coords, 13);
+    }
+
 }
 
 async function centerMapOn(city) {
@@ -266,8 +265,17 @@ async function centerMapOn(city) {
 
 
 window.addEventListener('load',
-    function() {
+    function () {
         loadMap();
+        this.document.getElementsByTagName("body")[0].style.width = innerWidth;
         //askAddress();
+        let c = "";
+        for (let i = 0; i < 50; i++) {
+            c += "testdata";
+            if (i % 10 == 0) c += '\n';
+        }
+        this.document.getElementById('testdata').innerHTML = c;
+
+        this.document.getElementById("databox").style.top = document.getElementsByTagName('header')[0].getBoundingClientRect().height;
     }
 );
