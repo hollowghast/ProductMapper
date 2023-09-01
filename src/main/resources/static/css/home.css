@@ -3,5 +3,33 @@ body .content {
     width: innerWidth;
     align-content: center;
     align-items: center;
+    text-align: center;
     margin: auto;
 }
+
+.content {
+    z-index: 50;
+}
+
+
+header {
+    z-index: 150;
+    top:0;
+    background-color: white;
+}
+ 
+#map {
+    z-index: 60;
+    top:0;
+    height: 200px; 
+    width: 100%;
+}
+ #databox {
+    top:200px;
+ }
+
+ #btn_edit-address {
+    z-index: 65;
+    top:0;
+    right: 0;
+ }

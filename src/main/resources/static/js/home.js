@@ -5,22 +5,6 @@ let mapDefaultZoom = 13;
 let map = undefined;
 let mapActiveMarker = undefined;
 
-// Send a POST request with JSON data to https://example.com/api
-/*
-fetch("https://example.com/api", {
-  method: "POST",
-  mode: "cors",
-  credentials: "include",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({ name: "Alice", age: 25 })
-})
-  .then((response) => response.json()) // Parse the response as JSON
-  .then((data) => console.log(data)) // Do something with the data
-  .catch((error) => console.error(error)); // Handle errors
-*/
-
 function injectBootstrap() {
     Array.from(document.getElementsByTagName('ul'))
         .forEach(ul => ul.classList.add("list-group"));
@@ -29,11 +13,16 @@ function injectBootstrap() {
 }
 
 function loadMap() {
-    map = L.map('map').setView(mapCenter, mapDefaultZoom);
+    map = L.map('map',
+        {
+            //options
+            scrollWheelZoom:false
+        }
+    ).setView(mapCenter, mapDefaultZoom);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-        maxZoom: 18,
+        maxZoom: 18
     }).addTo(map);
 }
 
@@ -276,13 +265,18 @@ async function centerMapOn(city) {
 
 
 window.addEventListener('load',
-    function() {
+    function () {
         loadMap();
         this.document.getElementsByTagName("body")[0].style.width = innerWidth;
         //askAddress();
         let c = "";
-        for (let i = 0; i < 50; i++) c += "testdata\n";
-        this.document.getElementsByTagName('pre')[0].innerHTML = c;
+
+        for (let i = 0; i < 50; i++) {
+            c += "testdata";
+            if (i % 10 == 0) c += '\n';
+        }
+        this.document.getElementById('testdata').innerHTML = c;
+
 
         this.document.getElementById("databox").style.top = document.getElementsByTagName('header')[0].getBoundingClientRect().height;
     }
