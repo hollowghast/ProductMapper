@@ -2,7 +2,8 @@ package com.productmapper.entities;
 
 import com.opencsv.bean.CsvBindByName;
 import com.productmapper.constants.Weekday;
-import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
