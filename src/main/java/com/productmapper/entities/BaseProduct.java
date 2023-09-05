@@ -1,11 +1,14 @@
 package com.productmapper.entities;
 
+import com.productmapper.constants.MassUnits;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.OffsetDateTime;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class BaseProduct {
     @Id
     @SequenceGenerator(
@@ -23,9 +26,13 @@ public class BaseProduct {
     @Column(name = "base_product_name", nullable = false)
     private String name;
     private Float price_unit;
-    private Integer net_mass;
+    private Double net_mass;
     private String currency; //->enum
-    private String mass_unit; //->enum
+
+    @Column(nullable = false, name = "last_updated")
+    private OffsetDateTime lastUpdated;
+
+    private MassUnits mass_unit; //->enum
     @ManyToOne
     @JoinColumn(name = "brand_id", nullable = false)
     private Brand brand;
@@ -33,5 +40,9 @@ public class BaseProduct {
     public BaseProduct(String name, Brand brand) {
         this.name = name;
         this.brand = brand;
+    }
+
+    public Double convertMass(){
+        return this.mass_unit.convert(this.net_mass);
     }
 }

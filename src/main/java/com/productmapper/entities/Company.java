@@ -8,6 +8,7 @@ import java.util.List;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class Company {
     @SequenceGenerator(name = "seq_Company",
             sequenceName = "seq_Company")
