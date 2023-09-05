@@ -1,5 +1,6 @@
 package com.productmapper.entities;
 
+import com.opencsv.bean.CsvBindByName;
 import com.productmapper.constants.Weekday;
 import lombok.*;
 
@@ -23,13 +24,16 @@ public class OpeningHours {
     @Column(name = "opening_hours_id")
     private Long id;
     @Enumerated(EnumType.ORDINAL)
+    @CsvBindByName
     private Weekday weekday;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "store_id", nullable = false) //done
     private Store store;
     @Column(nullable = false)
+    @CsvBindByName
     private OffsetTime start_time;
     @Column(nullable = false)
+    @CsvBindByName
     private OffsetTime end_time;
     private LocalDate date;
 
