@@ -24,8 +24,10 @@ public class AdminController {
         return "";
     }
 
+    /*
     @PostMapping(value = "/addShop", consumes = "multipart/form-data", params = {"file"})
     public void importShop(@RequestParam("file") MultipartFile file) {
         adminService.importStore(file);
     }
+    */
 }
