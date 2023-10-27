@@ -60,6 +60,13 @@
 			<version>5.7.1</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.apache.solr/solr-solrj -->
+		<dependency>
+			<groupId>org.apache.solr</groupId>
+			<artifactId>solr-solrj</artifactId>
+			<version>9.3.0</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

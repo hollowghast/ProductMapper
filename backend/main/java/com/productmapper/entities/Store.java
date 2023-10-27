@@ -1,7 +1,10 @@
 package com.productmapper.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
+import com.opencsv.bean.CsvBindByName;
+import com.opencsv.bean.CsvIgnore;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
@@ -25,19 +28,23 @@ public class Store {
 
     @ManyToOne
     @JoinColumn(name = "company_id", nullable = false)
+    @CsvIgnore
     private Company company;
 
     @OneToOne(cascade = CascadeType.ALL) //done
     @JoinColumn(name = "address_id", nullable = false)
+    @CsvBindByName
     private Address address;
 
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "store") //done
     @JsonIgnore
+    @CsvIgnore
     private List<LocalProduct> localProducts;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "store") //done
     @JsonIgnore
+    @CsvIgnore
     private List<OpeningHours> opening_hours;
 
 
