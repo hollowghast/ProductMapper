@@ -60,19 +60,19 @@ build/
 ################# NEXT.JS ########################
 
 # dependencies
-/src/front/node_modules
-/src/front/.pnp
+/backend/front/node_modules
+/backend/front/.pnp
 .pnp.js
 
 # testing
-/src/front/coverage
+/backend/front/coverage
 
 # next.js
 /.next/
 /out/
 
 # production
-/src/front/build
+/backend/front/build
 
 # misc
 .DS_Store
