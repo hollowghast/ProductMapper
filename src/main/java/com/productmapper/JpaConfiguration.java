@@ -2,6 +2,7 @@ package com.productmapper;
 
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.impl.Http2SolrClient;
+import org.apache.solr.client.solrj.impl.HttpSolrClient;
 import org.apache.solr.client.solrj.impl.XMLResponseParser;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -22,9 +23,8 @@ public class JpaConfiguration {
     @Bean
     @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
     public SolrClient getSolrClient() {
-        return new Http2SolrClient.Builder("http://localhost:8983/solr/products")
-                .withConnectionTimeout(5000L, TimeUnit.MILLISECONDS)
-                .withResponseParser(new XMLResponseParser())
+        return new HttpSolrClient.Builder("http://localhost:8983/solr")
+                .withConnectionTimeout(10000, TimeUnit.MILLISECONDS)
                 .build();
     }
 }

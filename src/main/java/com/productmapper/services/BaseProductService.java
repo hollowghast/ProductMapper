@@ -20,5 +20,8 @@ public class BaseProductService {
         return repo.findAll();
     }
 
+    public BaseProduct addBaseProduct(BaseProduct baseProduct) {
+        return repo.save(baseProduct);
+    }
 
 }
